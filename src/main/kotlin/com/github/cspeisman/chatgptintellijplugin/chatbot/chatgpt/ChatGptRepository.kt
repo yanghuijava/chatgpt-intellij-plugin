@@ -16,8 +16,8 @@ interface ChatGptRepository {
 class ChatGptHttp(private val apiKey: String): ChatGptRepository {
     private val client = OkHttpClient.Builder()
         .connectTimeout(60, TimeUnit.SECONDS)
-        .writeTimeout(60, TimeUnit.SECONDS)
-        .readTimeout(60, TimeUnit.SECONDS)
+        .writeTimeout(360, TimeUnit.SECONDS)
+        .readTimeout(360, TimeUnit.SECONDS)
         .build()
     private val mediaType: MediaType = "application/json; charset=utf-8".toMediaType()
     private val gson = GsonBuilder().create()
