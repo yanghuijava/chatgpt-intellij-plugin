@@ -40,7 +40,11 @@ class ChatBotActionService(private var actionType: ChatBotActionType) {
         }
 
         val chatbot = ChatBot(ChatGptHttp(apiKey))
-        val system = "Be as helpful as possible and concise with your response"
+        var system = "Be as helpful as possible and concise with your response"
+        val enableChinese = AppSettingsState.instance.enableChinese
+        if("是" == enableChinese){
+            system = "$system,and your answers should be in Chinese"
+        }
         val request = ChatCompletionRequest(model, system)
         request.addMessage(prompt)
         val generateResponse = chatbot.generateResponse(request)

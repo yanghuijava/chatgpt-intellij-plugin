@@ -15,6 +15,7 @@ import com.intellij.util.xmlb.XmlSerializerUtil
 class AppSettingsState : PersistentStateComponent<AppSettingsState> {
     var apiKey = ""
     var model = ""
+    var enableChinese = "否"
 
 
     override fun getState(): AppSettingsState {

@@ -16,6 +16,7 @@ class AppSettingsConfigurable : Configurable {
         val settings: AppSettingsState = AppSettingsState.instance
         var modified = mySettingsComponent!!.apiKey != settings.apiKey
         modified = modified or (mySettingsComponent!!.chatGptModel != settings.model)
+        modified = modified or (mySettingsComponent!!.enableChinese != settings.enableChinese)
         return modified
     }
 
@@ -24,12 +25,14 @@ class AppSettingsConfigurable : Configurable {
         val settings: AppSettingsState = AppSettingsState.instance
         settings.apiKey = mySettingsComponent!!.apiKey!!
         settings.model = mySettingsComponent!!.chatGptModel!!
+        settings.enableChinese = mySettingsComponent!!.enableChinese!!
     }
 
     override fun reset() {
         val settings: AppSettingsState = AppSettingsState.instance
         mySettingsComponent!!.apiKey = settings.apiKey
         mySettingsComponent!!.chatGptModel = settings.model
+        mySettingsComponent!!.enableChinese = settings.enableChinese
     }
 
     override fun disposeUIResources() {
